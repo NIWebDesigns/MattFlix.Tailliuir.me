@@ -40,23 +40,95 @@
             background-color: #b00610;
         }
 
+        .server-control {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: #222;
+            border-radius: 12px;
+        }
+
+        .server-status {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .status-btn {
+            font-size: 1.2em;
+            padding: 15px 25px;
+            background-color: #222;
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .status-btn.on {
+            background-color: #28a745;
+        }
+
+        .status-btn.off {
+            background-color: #dc3545;
+        }
+
         footer {
             margin-top: 80px;
             font-size: 0.9em;
             color: #aaa;
         }
+
+        /* Small screen adjustments */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .button-container {
+                display: block;
+            }
+
+            .status-btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
     </style>
 </head>
 <body>
     <h1>Welcome to MattFlix</h1>
-    <p>Your own private Plex server. Stream what you want, when you want.</p>
-    <a href="https://80.5.57.108:17840" class="button">Login to Plex</a>
-    <a href="http://80.5.57.108:5055/" class="button">Request a Show</a>
-<br><br>
-        <h1>Server</h1>
-    <p>Your own private server. Stream what you want, when you want.</p>
-    <a href="https://80.5.57.108:17840" class="button">Login to Plex</a>
-    <a href="http://80.5.57.108:5055/" class="button">Request a Show</a>
+    <p>Your own private streaming platform. Stream your favorite content, anytime.</p>
+
+    <!-- MattFlix Streaming Section (Login & Request Show) -->
+    <div class="button-container">
+        <a href="https://80.5.57.108:17840" class="button">Login to MattFlix</a>
+        <a href="http://80.5.57.108:5055/" class="button">Request a Show</a>
+    </div>
+
+    <br><br>
+
+    <!-- VPN Section for Local Network -->
+    <h1>Join Local Network</h1>
+    <p>To access the server, connect via VPN (if not already on the local network).</p>
+    <a href="#" class="button">Join Local Network via VPN</a>
+
+    <br><br>
+
+    <!-- Server Control Section -->
+    <div class="server-control">
+        <h1>AndyTheVideoMan</h1>
+        <p>Manage the server status here.</p>
+
+        <!-- Server On/Off Buttons -->
+        <div class="server-status">
+            <button class="status-btn on">Turn Server On</button>
+            <button class="status-btn off">Turn Server Off</button>
+        </div>
+
+        <br>
+        <a href="https://80.5.57.108:17840" class="button">Login to Server</a>
+    </div>
+
     <footer>
         &copy; 2025 MattFlix. All rights reserved.
     </footer>
