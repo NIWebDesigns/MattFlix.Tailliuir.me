@@ -132,7 +132,61 @@
         <a href="https://80.5.57.108:8096" class="button">Login to Server</a>
         <a href="https://80.5.57.108:8096" class="button">Online Users</a>
     </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Emby Server Status</title>
 
+  <!-- Simple styling for the badge (optional) -->
+  <style>
+    body {font-family:Arial,sans-serif; margin:2rem;}
+    #status-badge {
+      vertical-align: middle;
+      width:24px;
+      height:24px;
+    }
+    .label {
+      margin-left:0.5rem;
+      font-size:1rem;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Emby Server Status</h2>
+
+<!-- The badge itself -->
+<img id="status-badge"
+     src="http://80.5.57.108:8096/favicon.ico"
+     onerror="this.src='https://i.imgur.com/8JgKXzM.png'"   <!-- red ✖️ = offline -->
+     onload ="this.src='https://i.imgur.com/4Z9bQGv.png'"   <!-- green ✔️ = online -->
+     alt="Emby server status">
+
+<span class="label">http://80.5.57.108:8096</span>
+
+<!-- Auto‑refresh script (checks every 60 seconds) -->
+<script>
+  // How often we re‑check the server (milliseconds)
+  const REFRESH_INTERVAL = 60_000; // 1 minute
+
+  // The image element that does the ping
+  const badge = document.getElementById('status-badge');
+
+  // Function that forces the image to reload, triggering onload/onerror again
+  function refreshStatus() {
+    // Append a timestamp to bust the browser cache
+    const baseUrl = 'http://80.5.57.108:8096/favicon.ico';
+    badge.src = `${baseUrl}?t=${Date.now()}`;
+  }
+
+  // Start the periodic checks
+  setInterval(refreshStatus, REFRESH_INTERVAL);
+</script>
+
+</body>
+</html>
     <footer>
         &copy; 2025 MattFlix. All rights reserved.
     </footer>
