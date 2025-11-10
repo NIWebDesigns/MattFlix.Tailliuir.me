@@ -1,149 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>MattFlix - Your Personal Streaming Hub</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            background-color: #111;
-            color: #f9f9f9;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MattFlix - Your Personal Streaming Hub</title>
+<style>
+    /* Base and reset */
+    * {
+        box-sizing: border-box;
+        margin: 0; padding: 0;
+    }
+    body {
+        background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+        color: #eee;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.5;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+    h1, h2 {
+        color: #e50914;
+        text-shadow: 0 0 8px rgba(229,9,20,0.6);
+        font-weight: 700;
+        margin-bottom: 0.6em;
+    }
+    h1 {
+        font-size: 3.5rem;
+        letter-spacing: 2px;
+    }
+    h2 {
+        font-size: 2rem;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+    }
 
+    /* Intro text */
+    .intro {
+        max-width: 700px;
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        text-align: center;
+        color: #ccc;
+    }
+
+    /* Container for main controls */
+    .main-actions {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 4rem;
+    }
+    .card {
+        background: #222;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.7);
+        padding: 2rem;
+        width: 280px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: default;
+        user-select: none;
+    }
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 25px rgba(229,9,20,0.8);
+    }
+    .card h3 {
+        margin-bottom: 1rem;
+        color: #e50914;
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+    .card p {
+        font-size: 1rem;
+        color: #ddd;
+        margin-bottom: 1.8rem;
+    }
+    .card a.button {
+        display: inline-block;
+        background-color: #e50914;
+        color: white;
+        text-decoration: none;
+        padding: 12px 28px;
+        border-radius: 10px;
+        font-weight: 600;
+        box-shadow: 0 4px 14px rgba(229,9,20,0.6);
+        transition: background-color 0.3s ease;
+    }
+    .card a.button:hover,
+    .card a.button:focus {
+        background-color: #b00610;
+        box-shadow: 0 6px 20px rgba(176,6,16,0.9);
+        outline: none;
+    }
+
+    /* Layout Explanation */
+    .layout-explanation {
+        max-width: 720px;
+        background: #222c33;
+        border-radius: 14px;
+        padding: 30px 40px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.7);
+        margin-bottom: 4rem;
+        color: #e0e0e0;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    .layout-explanation h2 {
+        color: #e50914;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    .layout-list {
+        list-style: none;
+        padding-left: 0;
+    }
+    .layout-list li {
+        padding: 10px 0;
+        border-bottom: 1px solid #3a3a3a;
+    }
+    .layout-list li:last-child {
+        border-bottom: none;
+    }
+    strong {
+        color: #ff4c4c;
+    }
+
+    /* Server Control */
+    .server-control {
+        background: #222222dd;
+        border-radius: 14px;
+        max-width: 720px;
+        width: 100%;
+        padding: 30px 35px;
+        box-shadow: 0 0 24px rgba(0,0,0,0.6);
+        color: #ddd;
+    }
+    .server-control h2 {
+        text-align: center;
+        margin-bottom: 1.4rem;
+        color: #e50914;
+    }
+    .server-control p {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .server-status {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+    }
+    .status-btn {
+        font-size: 1.15rem;
+        padding: 14px 36px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        min-width: 160px;
+        font-weight: 700;
+        color: white;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+        transition: transform 0.25s ease;
+        user-select: none;
+    }
+    .status-btn.on {
+        background-color: #28a745;
+    }
+    .status-btn.off {
+        background-color: #dc3545;
+    }
+    .status-btn:hover, 
+    .status-btn:focus {
+        transform: scale(1.05);
+        outline: none;
+    }
+
+    /* Footer */
+    footer {
+        margin-top: 5rem;
+        font-size: 0.9rem;
+        color: #888;
+        text-align: center;
+        width: 100%;
+        border-top: 1px solid #333;
+        padding: 18px 0;
+        user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+        .main-actions {
+            flex-direction: column;
+            align-items: center;
+        }
+        .card {
+            width: 100%;
+            max-width: 320px;
+        }
+    }
+    @media (max-width: 400px) {
         h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            color: #e50914;
+            font-size: 2.5rem;
         }
-
         h2 {
-            font-size: 2em;
-            margin-top: 40px;
-            color: #e50914;
+            font-size: 1.8rem;
         }
-
-        p {
-            font-size: 1.2em;
-            margin-bottom: 40px;
-        }
-
-        a.button {
-            display: inline-block;
-            padding: 15px 30px;
-            margin: 20px;
-            font-size: 1.1em;
-            background-color: #e50914;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
-
-        a.button:hover {
-            background-color: #b00610;
-        }
-
-        .server-control {
-            margin-top: 60px;
-            padding: 30px;
-            background-color: #222;
-            border-radius: 12px;
-        }
-
-        .server-status {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .status-btn {
-            font-size: 1.2em;
-            padding: 15px 25px;
-            background-color: #222;
-            color: #fff;
-            border-radius: 8px;
-            cursor: pointer;
-            border: none;
-        }
-
-        .status-btn.on {
-            background-color: #28a745;
-        }
-
-        .status-btn.off {
-            background-color: #dc3545;
-        }
-
-        footer {
-            margin-top: 80px;
-            font-size: 0.9em;
-            color: #aaa;
-        }
-
-        /* Small screen adjustments */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-
-            .button-container {
-                display: block;
-            }
-
-            .status-btn {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
-    <h1>Welcome to MattFlix</h1>
-    <p>Your own private streaming platform. Stream your favorite content, anytime.</p>
 
-    <!-- MattFlix Streaming Section (Login & Request Show) -->
-    <div class="button-container">
-        <a href="https://watch.plex.tv/live-tv?_gl=1*1rmpg43*_gcl_au*MjAzOTA5MzM1MC4xNzYyNzM2NTA3*_ga*MTcxMzgzNTgzMC4xNzYyNzM2NTA4*_ga_G6FQWNSENB*czE3NjI3MzY1MDgkbzEkZzAkdDE3NjI3MzY1MDgkajYwJGwwJGgw" class="button">Login To MattFlix Plex</a>
-        <a href="http://80.5.57.108:5055/" class="button">Make A Request</a>
+<h1>Welcome to MattFlix</h1>
+<p class="intro">Your personal streaming hub. Watch your favorite content anytime, anywhere, with ease.</p>
+
+<section class="main-actions" aria-label="Primary actions">
+    <div class="card" role="region" aria-labelledby="plex-login-title">
+        <h3 id="plex-login-title">Plex Streaming</h3>
+        <p>Access your MattFlix Plex server to stream live TV and on-demand shows.</p>
+        <a href="https://watch.plex.tv/live-tv?_gl=1*1rmpg43*_gcl_au*MjAzOTA5MzM1MC4xNzYyNzM2NTA3*_ga*MTcxMzgzNTgzMC4xNzYyNzM2NTA4*_ga_G6FQWNSENB*czE3NjI3MzY1MDgkbzEkZzAkdDE3NjI3MzY1MDgkajYwJGwwJGgw" class="button" tabindex="0">Login to Plex</a>
     </div>
 
-<h2>Understanding The Layout</h2>
-    <p>Torbox-TV - Updates Every Sunday With the Latest TV Shows If a TV Show in this catagory is not watched in 30days it will be removed to make room for new tvshows</p>
-    <p>Mattflix-TV & Mattflix-Films - Any Requests Made Will Show Up In These Sections</p>
-    <p>AndyTheVideoMan - Films & AndyTheVideoMan - TV - These are from a sister server and are updated daily and ran separately</p>
-    <!-- VPN Section for Local Network -->
-    <h2>Join Local Network</h2>
-    <p>Solve geo-blocking by securely linking into the local network using Tailscale.</p>
-    <a href="https://login.tailscale.com/admin/invite/Jwy96F4S7TMNgSVFK9k721" class="button">Join Local Network via VPN</a>
-    <a href="https://tailscale.com/download" class="button">Download Tailscale</a>
-
-    <!-- Server Control Section for AndyTheVideoMan -->
-    <div class="server-control">
-        <h2>AndyTheVideoMan</h2>
-        <p>Manage the AndyTheVideoMan server status here.</p>
-
-        <!-- Server On/Off Buttons for AndyTheVideoMan -->
-        <div class="server-status">
-            <button class="status-btn on">Turn Server On</button>
-            <button class="status-btn off">Turn Server Off</button>
-        </div>
-
-        <br>
-        <a href="https://80.5.57.108:8096" class="button">Login to Server</a>
-        <a href="https://80.5.57.108:8096" class="button">Online Users</a>
+    <div class="card" role="region" aria-labelledby="request-title">
+        <h3 id="request-title">Make a Request</h3>
+        <p>Send us your favorite titles you want to watch. We update shows regularly.</p>
+        <a href="http://80.5.57.108:5055/" class="button" tabindex="0">Make a Request</a>
     </div>
+</section>
+
+<section class="layout-explanation" aria-label="Understanding the layout">
+    <h2>How MattFlix Works</h2>
+    <ul class="layout-list">
+        <li><strong>Torbox-TV:</strong> Updated every Sunday with the latest TV shows. Shows unwatched for 30 days get removed to make space.</li>
+        <li><strong>Mattflix-TV & Films:</strong> Your requests appear here, so keep an eye out for new content.</li>
+        <li><strong>AndyTheVideoMan:</strong> Sister server updated daily with separate films and TV shows.</li>
+    </ul>
+</section>
 
 
-<h2>Emby Server Status</h2>
+</section>
 
-</body>
-</html>
-    <footer>
-        &copy; 2025 MattFlix. All rights reserved.
-    </footer>
+<footer>
+    &copy; 2025 MattFlix. All rights reserved.
+</footer>
+
 </body>
 </html>
