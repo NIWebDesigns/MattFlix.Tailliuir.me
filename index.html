@@ -111,9 +111,13 @@
         <a href="http://80.5.57.108:5055/" class="button">Make A Request</a>
     </div>
 
+<h2>Understanding The Layout</h2>
+    <p>Torbox-TV - Updates Every Sunday With the Latest TV Shows If a TV Show in this catagory is not watched in 30days it will be removed to make room for new tvshows</p>
+    <p>Mattflix-TV & Mattflix-Films - Any Requests Made Will Show Up In These Sections</p>
+    <p>AndyTheVideoMan - Films & AndyTheVideoMan - TV - These are from a sister server and are updated daily and ran separately</p>
     <!-- VPN Section for Local Network -->
     <h2>Join Local Network</h2>
-    <p>To access the server, connect via VPN (if not already on the local network).</p>
+    <p>Solve geo-blocking by securely linking into the local network using Tailscale.</p>
     <a href="https://login.tailscale.com/admin/invite/Jwy96F4S7TMNgSVFK9k721" class="button">Join Local Network via VPN</a>
     <a href="https://tailscale.com/download" class="button">Download Tailscale</a>
 
@@ -135,34 +139,6 @@
 
 
 <h2>Emby Server Status</h2>
-
-<!-- The badge itself -->
-<img id="status-badge"
-     src="http://80.5.57.108:8096/favicon.ico"
-     onerror="this.src='https://imgs.search.brave.com/JVmedwp3KJw-13_vMC5ChFHTErsktUjhgHn0Ex8nnTc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTE1/Njg2MTI3MC9waG90/by93aWRlLXJlZC10/aWNrLWRyYXduLXdp/dGgtYS1icnVzaC1v/bi13aGl0ZS1wYXBl/ci1jb25jZXB0LWNo/ZWNrbGlzdC5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9WVlF/bFFrNk1xZV85NXo1/V3BuSnh4QVdaVV9R/bnptdXd0X2FQUThp/Mm5MOD0'"   <!-- red ✖️ = offline -->
-     onload ="this.src='https://imgs.search.brave.com/DvXUkI5KKOiYRBxxmNDsWPpyeToBJZSagO-ixqBF57o/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA3LzQ1Lzg4LzI3/LzM2MF9GXzc0NTg4/MjcwOV9FVGlxSXpN/c2xHWTl2VnQ0dU5i/N01BWWpoZkNXQ1Ry/aS5qcGc'"   <!-- green ✔️ = online -->
-     alt="Emby server status">
-
-<span class="label">http://80.5.57.108:8096</span>
-
-<!-- Auto‑refresh script (checks every 60 seconds) -->
-<script>
-  // How often we re‑check the server (milliseconds)
-  const REFRESH_INTERVAL = 60_000; // 1 minute
-
-  // The image element that does the ping
-  const badge = document.getElementById('status-badge');
-
-  // Function that forces the image to reload, triggering onload/onerror again
-  function refreshStatus() {
-    // Append a timestamp to bust the browser cache
-    const baseUrl = 'http://80.5.57.108:8096/favicon.ico';
-    badge.src = `${baseUrl}?t=${Date.now()}`;
-  }
-
-  // Start the periodic checks
-  setInterval(refreshStatus, REFRESH_INTERVAL);
-</script>
 
 </body>
 </html>
